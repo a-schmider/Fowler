@@ -1,1 +1,2 @@
-This file was created by IntelliJ IDEA 12.1.6 for binding GitHub repository
+Test classes plus Methods can easy be created in IntelliJ when pressing ALT + INSERT and then choosing Test.... It automatically creates a tests for all marked methods in that class.
+And to refactor variable names you can use SHIFT + F6

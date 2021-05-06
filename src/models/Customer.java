@@ -42,5 +42,12 @@ public class Customer {
         return result;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public int getTotalFrequentPoints() {
+        return totalFrequentPoints;
+    }
 }
     
