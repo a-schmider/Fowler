@@ -6,6 +6,9 @@ class Customer {
     private String name;
     private Vector<Rental> rentals = new Vector<>();
 
+    private double totalPrice = 0;
+    private int totalFrequentPoints = 0;
+
 
     public Customer (String name){
         this.name = name;
@@ -14,6 +17,8 @@ class Customer {
 
     public void addRental(Rental rental) {
         rentals.addElement(rental);
+        totalPrice += rental.getPrice();
+        totalFrequentPoints += rental.getRenterPoints();
     }
 
     public String getName (){
@@ -21,31 +26,21 @@ class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        Enumeration<Rental> enum_rentals = rentals.elements();
         String result = "Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        result = result.concat("\tTitle\t\tDays\tAmount" + "\n");
 
-        double thisAmount;
         Rental rental;
+        Enumeration<Rental> enum_rentals = rentals.elements();
         while (enum_rentals.hasMoreElements()) {
             rental = enum_rentals.nextElement();
 
-            //determine amounts for each line
-            thisAmount = rental.getPrice();
-
-            // add frequent renter points
-            frequentRenterPoints = rental.getRenterPoints();
-
             //show figures for this rental
-            result += "\t" + rental.getMovie().getTitle()+ "\t\t" + rental.getDaysRented() + "\t" + thisAmount + "\n";
-            totalAmount += thisAmount;
+            result = result.concat("\t" + rental.getMovie().getTitle()+ "\t\t" + rental.getDaysRented() + "\t" + rental.getPrice() + "\n");
         }
 
         //add footer lines
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+        result = result.concat("Amount owed is " + totalPrice + "\n");
+        result = result.concat("You earned " + totalFrequentPoints + " frequent renter points");
         return result;
     }
 
