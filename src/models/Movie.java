@@ -1,3 +1,5 @@
+package models;
+
 public class Movie {
 
     public static final int REGULAR = 0;
