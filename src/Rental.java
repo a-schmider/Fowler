@@ -19,27 +19,25 @@ class Rental {
     }
 
     public double getPrice() {
-        double thisAmount = 0;
+        double basePrice = movie.getBasePrice();
 
         switch (getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                thisAmount += 2;
                 if (getDaysRented() > 2)
-                    thisAmount += (getDaysRented() - 2) * 1.5;
+                    basePrice += (getDaysRented() - 2) * 1.5;
                 break;
 
             case Movie.NEW_RELEASE:
-                thisAmount += getDaysRented() * 3;
+                basePrice += getDaysRented() * 3;
                 break;
 
             case Movie.CHILDREN:
-                thisAmount += 1.5;
                 if (getDaysRented() > 3)
-                    thisAmount += (getDaysRented() - 3) * 1.5;
+                    basePrice += (getDaysRented() - 3) * 1.5;
                 break;
         }
 
-        return thisAmount;
+        return basePrice;
     }
 
     public int getRenterPoints() {

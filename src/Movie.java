@@ -25,4 +25,18 @@ public class Movie {
     public String getTitle (){
         return title;
     }
+
+    public double getBasePrice() {
+        double price = 0;
+
+        switch (priceCode) {
+            case REGULAR:
+                price = 2;
+                break;
+            case CHILDREN:
+                price = 1.5;
+        }
+
+        return price;
+    }
 }
